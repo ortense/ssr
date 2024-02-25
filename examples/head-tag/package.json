@@ -1,0 +1,16 @@
+{
+  "name": "head-tag",
+  "description": "how to use custom head tag with @ortense/ssr",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "ortz"
+  },
+  "dependencies": {
+    "@ortense/ssr": "workspace:*",
+    "hono": "^4.0.5"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.0.0"
+  }
+}

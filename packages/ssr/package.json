@@ -1,0 +1,21 @@
+{
+  "name": "@ortense/ssr",
+  "description": "A simple tool to build JSX Server Side Render apps in Bun with minimal configuration",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./index.ts",
+  "bin": {
+    "ortz": "./bin/ortz.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "hono": "^4.0.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0",
+    "hono": "^4.0.5"
+  },
+  "dependencies": {
+    "zod": "^3.22.4"
+  }
+}

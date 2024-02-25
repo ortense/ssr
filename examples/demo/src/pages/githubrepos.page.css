@@ -1,0 +1,29 @@
+body {
+  color: white;
+  background-color: #000000;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 4rem;
+  line-height: 3em;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+a, a:visited { color: inherit }
+
+a {
+  font-size: 1.4rem;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: .25rem .5rem;
+  display: inline-block;
+  width: 100%;
+}

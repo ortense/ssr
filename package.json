@@ -1,0 +1,7 @@
+{
+  "name": "ortense-srr",
+  "workspaces": ["packages/*", "examples/*"],
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

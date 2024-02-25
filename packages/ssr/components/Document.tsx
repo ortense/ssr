@@ -1,6 +1,7 @@
 import { Style, css } from 'hono/css'
 import { HTML } from './HTML'
 import { Meta } from './Meta'
+import type { DocumentProps } from '../types/public'
 
 export function Document({ page }: DocumentProps) {
   return (

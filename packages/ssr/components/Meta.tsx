@@ -1,10 +1,11 @@
-import type { PageMeta } from '../types'
+import type { PageMeta } from '../types/public'
 
 type Props = { data: PageMeta[] }
 
 export function Meta({ data }: Props) {
   return <>
-    { data?.map(({name, content}) => (<meta name={name} content={content} />)) }
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    { data?.map(props => (<meta {...props} />)) }
   </>
 }

@@ -8,15 +8,20 @@ export type PageProps<T extends string = string> = {
   params: Record<RouteParams<T>, string>
 }
 
-export type PageMeta = {
-  name: string
-  content: string
-}
-
 export type RouteParams<T extends string> =
   T extends `${infer _Start}:${infer Param}/${infer Rest}` ? Param | RouteParams<Rest> :
   T extends `${infer _Start}:${infer Param}` ? Param :
   never
+
+  export type PageMeta = 
+  | {
+      name: 'application-name' | 'author' | 'description' | 'generator' | 'keywords' | 'viewport'
+      content: string 
+    }
+  | { 
+      'http-equiv': 'content-security-policy' | 'content-type' | 'default-style' | 'refresh'
+      content: string 
+    }
 
 export type Page = {
   props: PageProps

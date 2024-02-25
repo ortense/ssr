@@ -1,0 +1,15 @@
+{
+  "name": "hello-world",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "ortz --source ./"
+  },
+  "dependencies": {
+    "@ortense/ssr": "workspace:*",
+    "hono": "^4.0.5"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.0.0"
+  }
+}

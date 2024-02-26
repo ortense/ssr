@@ -10,6 +10,7 @@ type ServerOptions = {
   pages: PageModule[]
   Document: (props: DocumentProps) => JSX.Element
   settings: Settings
+  globalStyle: string
 }
 
 export function createServerApp(options: ServerOptions) {
@@ -36,6 +37,7 @@ export function createServerApp(options: ServerOptions) {
       return c.html(
         <options.Document
           settings={options.settings}
+          globalStyle={options.globalStyle}
           page={{
             props: pageProps,
             title: page.title,

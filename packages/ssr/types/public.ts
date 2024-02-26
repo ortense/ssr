@@ -35,4 +35,5 @@ export type Page = {
 export type DocumentProps = {
   page: Page
   settings: Settings
+  globalStyle: string
 }

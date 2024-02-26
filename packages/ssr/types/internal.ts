@@ -27,4 +27,8 @@ export type PageModule = {
   style: Nullable<string>
   title: Nullable<string>
   Head: Nullable<(props: PageProps) => JSX.Element>
+  paths: {
+    relative: string
+    absolute: string
+  }
 }

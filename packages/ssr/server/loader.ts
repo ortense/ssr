@@ -1,7 +1,7 @@
 import { resolve } from 'node:path'
 import { isPageModule } from '../types/guards'
 import type { PageModule, Settings } from '../types/internal'
-import { cyan, red, yellow } from '../utils/console-style'
+import { showGlobalStyleFoundMessage, showLookingForPagesMessage } from '../utils/console-messages'
 
 export async function getStyle(path: string) {
   const file = Bun.file(path)
@@ -41,7 +41,7 @@ export async function createPageModule(settings: Settings, path: string): Promis
 export async function getGlobalStyle(settings: Settings) {
   const globalStyle = await getStyle(`${settings.workdir}/${settings.patterns.style}`)
 
-  if(globalStyle) console.log(` 💅 Global style found in ${settings.source}/${settings.patterns.style} \n`)
+  if(globalStyle) showGlobalStyleFoundMessage(`${settings.source}/${settings.patterns.style}`)
 
   return globalStyle
 }
@@ -49,7 +49,7 @@ export async function getGlobalStyle(settings: Settings) {
 export async function getPages(settings: Settings) {
   const glob = new Bun.Glob(settings.patterns.page)
 
-  console.log(` 🔍️ Looking for pages in ${settings.source}/${settings.patterns.page} \n`)
+  showLookingForPagesMessage(`${settings.source}/${settings.patterns.page}`)
 
   const pageModules = await Promise.all(
     Array

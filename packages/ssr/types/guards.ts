@@ -1,12 +1,19 @@
 import type { PageModule } from './internal'
 import type { PageMeta } from './public'
 
+const validMetaName = ['application-name', 'author', 'description', 'generator', 'keywords', 'viewport']
+
+const validMetaHTTPequiv = ['content-security-policy', 'content-type', 'default-style', 'refresh']
+
 export function isPageMeta(value: unknown): value is PageMeta {
   const meta = value as PageMeta
 
-  return typeof meta === 'object'
-    && typeof meta.name === 'string'
-    && typeof meta.content === 'string'
+  if (typeof meta !== 'object') return false
+  if (typeof meta.content !== 'string') return false
+  if ('name' in meta && !validMetaName.includes(meta.name)) return false
+  if ('http-equiv' in meta && !validMetaHTTPequiv.includes(meta['http-equiv'])) return false
+
+  return true
 }
 
 export function isPageModule(value: unknown): value is PageModule {

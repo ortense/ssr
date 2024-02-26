@@ -2,9 +2,15 @@ import './compression'
 import { Hono } from 'hono'
 import { compress } from 'hono/compress'
 import { logger } from 'hono/logger'
+import { 
+  showRequestLogMessage,
+  showRouteConflictMessage,
+  showRouteRegisteredMessage,
+} from '../utils/console-messages'
+
 import type { PageModule, Settings } from '../types/internal'
 import type { DocumentProps, PageProps } from '../types/public'
-import { bold, green, red, yellow } from '../utils/console-style'
+
 
 type ServerOptions = {
   pages: PageModule[]
@@ -27,14 +33,14 @@ export function createServerApp(options: ServerOptions) {
   const registers: Map<string, string> = new Map()
 
   options.pages.forEach((page) => {
-
-    if(registers.has(page.route)) {
-      console.error(`${bold(red('\n 💥 ROUTE CONFLICT!'))}\n ${red('Unable to register route')} ${green(page.route)} ${red('in')} ${yellow(page.paths.relative)} ${red('route already registered by')} ${yellow(registers.get(page.route) as string)}\n`)
-      return
+    const routeConflict = registers.get(page.route)
+    
+    if(routeConflict) {
+      return showRouteConflictMessage(page.route, page.paths.relative, routeConflict)
     }
 
     app.get(page.route, (c) => {
-      if (!options.settings.silent) console.log(`  --> GET ${page.route}`)
+      if (!options.settings.silent) showRequestLogMessage(page.route)
 
       const pageProps: PageProps = {
         route: page.route,
@@ -59,7 +65,7 @@ export function createServerApp(options: ServerOptions) {
     })
 
     registers.set(page.route, page.paths.relative)
-    console.log(` 🛣️  route ${bold(green(page.route))} registered by ${yellow(page.paths.relative)}`)
+    showRouteRegisteredMessage(page.route, page.paths.relative)
   })
 
   return app
